@@ -10,163 +10,120 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
     :root {
-      /* Palette terinspirasi dari gambar referensi */
-      --bg-gradient: linear-gradient(135deg, #2d3475 0%, #101010 100%);
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --text-main: #ffffff;
-      --accent-neon: #00f2fe; /* Cyan menyala */
+      --bg-light: #fdfbf7; /* Krem sangat muda agar tidak silau */
+      --text-dark: #2d3436;
+      --accent-shopee: #ee4d2d;
+      --accent-tiktok: #000000;
     }
 
     body {
       margin: 0; padding: 0; 
-      /* Background Gradient Mewah */
-      background: var(--bg-gradient);
+      background-color: var(--bg-light);
+      background-image: 
+        radial-gradient(at 0% 0%, #ffe8d1 0px, transparent 50%),
+        radial-gradient(at 100% 100%, #d1f5ff 0px, transparent 50%);
       background-attachment: fixed;
       font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
+      color: var(--text-dark);
     }
 
     .sticky-header {
       position: sticky; top: 0; z-index: 1000;
-      /* Header Transparan (Blur kuat) */
-      background: rgba(16, 16, 16, 0.5);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      padding: 15px;
-      border-bottom: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid #eee;
+      padding: 12px 15px;
     }
 
-    .brand-text { 
-      font-weight: 800; font-size: 1.6rem; 
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255,255,255,0.5);
-    }
-    
-    .brand-text span { color: var(--accent-neon); text-shadow: 0 0 10px var(--accent-neon); }
+    .brand-text { font-weight: 800; font-size: 1.4rem; color: #6c5ce7; }
+    .brand-text span { color: #fd79a8; }
 
-    /* Tombol Transparan Atas */
     .btn-top {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.8); 
-      font-size: 10px; font-weight: 700;
-      padding: 6px 14px; border-radius: 20px;
-      transition: 0.3s;
+      background: #fff; border: 1.5px solid #eee;
+      color: #636e72; font-size: 10px; font-weight: 700;
+      padding: 5px 12px; border-radius: 12px;
     }
-    .btn-top:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 
     #searchInput {
-      border-radius: 18px; padding: 14px 20px; 
-      border: 1px solid var(--glass-border);
-      width: 100%; outline: none; font-size: 14px; margin: 15px 0 10px 0;
-      background: rgba(0, 0, 0, 0.2);
-      color: #fff;
-      transition: 0.3s;
+      border-radius: 12px; padding: 10px 15px; 
+      border: 1px solid #dfe6e9;
+      width: 100%; outline: none; font-size: 14px; margin: 10px 0;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
-    #searchInput:focus { border-color: var(--accent-neon); box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
 
     #categoryDropdown {
-      width: 100%; border-radius: 15px; padding: 12px;
-      border: 1px solid var(--glass-border); font-size: 13px;
-      font-weight: 600; color: #fff; 
-      background: rgba(0, 0, 0, 0.2);
-      cursor: pointer; outline: none;
+      width: 100%; border-radius: 10px; padding: 8px;
+      border: 1px solid #dfe6e9; font-size: 13px;
+      font-weight: 600; color: #636e72; background: #fff;
     }
-    #categoryDropdown option { background: #101010; color: #fff; }
 
-    .main-wrapper { padding: 15px; }
+    .main-wrapper { padding: 12px; }
 
-    /* Card Aesthetic (Ultra Glassmorphism) */
     .product-card {
-      background: var(--glass);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-radius: 28px; padding: 22px;
-      margin-bottom: 20px; 
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: #ffffff;
+      border-radius: 20px; padding: 18px;
+      margin-bottom: 15px; 
+      border: 1px solid #f1f2f6;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.1s;
     }
 
-    .product-card:active { transform: scale(0.97); }
+    .product-card:active { transform: scale(0.98); }
 
     .badge-custom {
-      font-size: 10px; padding: 6px 14px; border-radius: 12px;
-      font-weight: 800; color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 9px; padding: 4px 10px; border-radius: 8px;
+      font-weight: 800; text-transform: uppercase; color: #fff;
     }
     
     .merk-label { 
-      font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; 
-      background: rgba(255, 255, 255, 0.05);
-      padding: 4px 12px; border-radius: 10px;
+      font-size: 10px; color: #b2bec3; font-weight: 700; 
+      background: #f1f2f6; padding: 3px 8px; border-radius: 6px;
     }
 
-    .product-name { 
-      font-weight: 700; color: #ffffff; 
-      font-size: 16px; margin: 18px 0;
-      line-height: 1.5;
-    }
+    .product-name { font-weight: 700; font-size: 15px; margin: 12px 0; color: #2d3436; }
 
-    /* Tombol Shopee & TikTok Berwarna Berani */
-    .button-group { display: flex; gap: 12px; }
+    .button-group { display: flex; gap: 8px; }
     
     .btn-aff {
-      flex: 1; border-radius: 16px; padding: 14px; font-size: 13px;
+      flex: 1; border-radius: 12px; padding: 10px; font-size: 12px;
       font-weight: 800; text-align: center; text-decoration: none !important;
-      color: white !important; display: flex; align-items: center; 
-      justify-content: center; gap: 8px;
-      transition: opacity 0.2s;
+      color: white !important; display: flex; align-items: center; justify-content: center; gap: 6px;
     }
     
-    .shopee { background: linear-gradient(135deg, #ff9966, #ff5e62); box-shadow: 0 5px 15px rgba(255, 94, 98, 0.3); }
-    .tiktok { background: #000000; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-    
-    .btn-aff:active { opacity: 0.8; }
-    
-    /* Warna Gradient Badge per Kategori */
-    .grad-pakaian { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: #000 !important; }
-    .grad-gadget { background: linear-gradient(45deg, #2af598, #009efd); color: #000 !important; }
-    .grad-perabot { background: linear-gradient(45deg, #fccb90, #d57eeb); color: #000 !important; }
-    .grad-viral { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .grad-default { background: rgba(255,255,255,0.1); }
+    .shopee { background: #ee4d2d; box-shadow: 0 4px 10px rgba(238, 77, 45, 0.2); }
+    .tiktok { background: #000000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    /* Variasi Warna Kategori (Cerah) */
+    .cat-blue { background: #74b9ff; }
+    .cat-pink { background: #fd79a8; }
+    .cat-green { background: #55efc4; color: #2d3436 !important; }
+    .cat-orange { background: #fab1a0; color: #2d3436 !important; }
+    .cat-purple { background: #a29bfe; }
 
   </style>
 </head>
 <body>
 
 <div class="sticky-header">
-  <div class="header-top d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center">
     <div class="brand-text">Katalog<span>UTI</span></div>
-    <div class="header-btns d-flex gap-2">
-      <button class="btn-top" onclick="alert('📢 Link aman dan terverifikasi.')">Disclaimer</button>
-      <button class="btn-top" onclick="alert('✨ Cari barang, lalu klik tombol belanja!')">Panduan</button>
+    <div class="d-flex gap-2">
+      <button class="btn-top" onclick="alert('📢 Link belanja aman & terpercaya.')">Disclaimer</button>
+      <button class="btn-top" onclick="alert('✨ Klik barang favoritmu lalu pilih Shopee atau TikTok!')">Panduan</button>
     </div>
   </div>
-  
-  <input type="text" id="searchInput" placeholder="Cari barang atau merk..." onkeyup="search()">
-  
+  <input type="text" id="searchInput" placeholder="Cari barang viral..." onkeyup="search()">
   <select id="categoryDropdown" onchange="search()">
     <option value="Semua">🌈 Semua Vibes</option>
-    </select>
+  </select>
 </div>
 
-<div class="main-wrapper">
-  <div id="productList">
-    <div class="text-center py-5 text-white">
-       <div class="spinner-border spinner-border-sm text-info mb-2" role="status"></div><br>
-       <small>Menyiapkan Barang Viral...</small>
-    </div>
-  </div>
+<div class="main-wrapper" id="productList">
+  <div class="text-center py-5">Memuat Barang Kece...</div>
 </div>
 
 <script>
-  // MASUKKAN LINK CSV ANDA DI SINI
-  const SHEET_URL = 'PASTE_LINK_CSV_ANDA_DISINI';
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVyE4Tz42jVQefjYdZZ-Lhn1ApYL9ehbaX2MByWWfM65NPNS2TKugPjoFe-oJTGxylW2hhz-r849y/pub?output=csv';
 
   let localData = [];
 
@@ -174,39 +131,65 @@
     try {
       const response = await fetch(SHEET_URL);
       const csvData = await response.text();
-      const lines = csvData.split('\n').map(l => l.split(','));
-      localData = lines.slice(1).filter(row => row[0]); 
+      const lines = csvData.split('\n').map(line => {
+        const matches = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+        return matches ? matches.map(m => m.replace(/^"|"$/g, '')) : [];
+      });
+      
+      localData = lines.slice(1).filter(row => row.length > 0 && row[0] !== ""); 
       renderData(localData);
       
-      const dropdown = document.getElementById('categoryDropdown');
       const cats = [...new Set(localData.map(r => r[1]))].filter(c => c);
+      const dropdown = document.getElementById('categoryDropdown');
       cats.forEach(c => {
         const opt = document.createElement('option');
         opt.value = opt.text = c;
         dropdown.add(opt);
       });
-    } catch (e) { document.getElementById('productList').innerHTML = "<div class='text-center text-danger'>Error mengambil data. Pastikan Sheet dipublish.</div>"; }
+    } catch (e) {
+      document.getElementById('productList').innerHTML = "Gagal memuat data.";
+    }
   }
 
   function renderData(data) {
     const list = document.getElementById('productList');
     if(data.length === 0) {
-        list.innerHTML = "<div class='text-center py-5 text-white-50'>Yah, barangnya nggak ketemu... 🥲</div>";
-        return;
+      list.innerHTML = "<div class='text-center py-5'>Barang tidak ditemukan...</div>";
+      return;
     }
 
-    list.innerHTML = data.map(row => {
-      let gradBadge = "grad-default";
-      const cat = (row[1] || "").toLowerCase();
-      if(cat.includes("pakaian")) gradBadge = "grad-pakaian";
-      if(cat.includes("gadget")) gradBadge = "grad-gadget";
-      if(cat.includes("perabot")) gradBadge = "grad-perabot";
-      if(cat.includes("viral")) gradBadge = "grad-viral";
+    const colors = ['cat-blue', 'cat-pink', 'cat-green', 'cat-orange', 'cat-purple'];
 
+    list.innerHTML = data.map((row, index) => {
+      const colorClass = colors[index % colors.length];
       return `
         <div class="product-card">
           <div class="d-flex justify-content-between align-items-center">
-            <span class="badge-custom ${gradBadge}">${row[1] || 'Random'}</span>
-            <span class="merk-label">${row[2] || 'No Brand'}</span>
+            <span class="badge-custom ${colorClass}">${row[1] || 'Viral'}</span>
+            <span class="merk-label">${row[2] || 'Original'}</span>
           </div>
-          <div class="product-name">${row[0]}
+          <div class="product-name">${row[0]}</div>
+          <div class="button-group">
+            <a href="${row[3]}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
+            <a href="${row[4]}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function search() {
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    const cat = document.getElementById('categoryDropdown').value;
+    const filtered = localData.filter(r => {
+      const matchSearch = (r[0] + (r[2] || "")).toLowerCase().includes(term);
+      const matchCat = (cat === 'Semua' || r[1] === cat);
+      return matchSearch && matchCat;
+    });
+    renderData(filtered);
+  }
+
+  window.onload = fetchData;
+</script>
+</body>
+</html>
