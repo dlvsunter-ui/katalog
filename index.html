@@ -1,96 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <base target="_top">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Katalog UTI - Aesthetic Shopping</title>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+    :root {
+      --pastel-red: #ffb3ba;
+      --pastel-orange: #ffdfba;
+      --pastel-yellow: #ffffba;
+      --pastel-green: #baffc9;
+      --pastel-blue: #bae1ff;
+      --pastel-purple: #e0bbff;
+      --soft-pink: #ffd1dc;
+      --text-dark: #4a5568;
+      --bg-soft: #fdfbfb;
+    }
 
     body {
       margin: 0; padding: 0; 
-      background-color: #f1f8e9; /* Pastel Hijau */
-      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
       -webkit-font-smoothing: antialiased;
     }
 
-    /* HEADER: Dibuat solid tanpa efek blur agar ringan */
+    /* Sticky Header dengan Glassmorphism */
     .sticky-header {
       position: sticky; top: 0; z-index: 1000;
-      background: #ffffff;
-      padding: 12px;
-      border-bottom: 2px solid #e2e8f0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
-    .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
-    .brand-text span { color: #000000; }
+    .brand-text { 
+      font-weight: 700; font-size: 1.5rem; color: #ff8b94; 
+      letter-spacing: -0.5px;
+    }
+    .brand-text span { color: #4a4a4a; font-weight: 400; }
     
-    .header-top { display: flex; justify-content: space-between; align-items: center; }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .header-btns { display: flex; gap: 8px; }
 
-    /* Tombol Panduan/Disclaimer sesuai pakem awal */
-    .btn-top {
-      background: #fff; border: 1.5px solid #6c5ce7;
-      color: #6c5ce7; font-size: 9px; font-weight: 700;
-      padding: 5px 10px; border-radius: 6px;
+    .btn-custom-top {
+      font-size: 10px; font-weight: 700; border-radius: 20px;
+      padding: 5px 12px; border: none; transition: 0.3s;
     }
+    .btn-disc { background: var(--pastel-red); color: white; }
+    .btn-guide { background: #cbd5e0; color: white; }
 
     #searchInput {
-      border-radius: 8px; padding: 10px 12px; 
-      border: 2px solid #ced4da;
-      width: 100%; outline: none; font-size: 14px; margin: 10px 0;
-      background: #fff;
+      border-radius: 15px; padding: 12px 18px; 
+      border: 2px solid transparent;
+      width: 100%; outline: none; font-size: 14px; margin-bottom: 12px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: 0.3s;
     }
+    #searchInput:focus { border-color: var(--soft-pink); }
 
     #categoryDropdown {
-      width: 100%; border-radius: 8px; padding: 8px;
-      border: 2px solid #55efc4;
-      font-size: 13px; font-weight: 600; color: #334155;
-      background: #fff; outline: none;
+      width: 100%; border-radius: 12px; padding: 10px;
+      border: none; font-size: 13px; font-weight: 600;
+      color: var(--text-dark); background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      outline: none; cursor: pointer;
+      appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a5568' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: calc(100% - 12px) center;
     }
 
-    .main-wrapper { padding: 12px; }
+    .main-wrapper { padding: 15px; padding-bottom: 50px; }
 
-    /* CARD: Tanpa bayangan/shadow berat, hanya border solid */
+    /* Product Card Styling */
     .product-card {
-      background: white; border-radius: 12px; padding: 16px;
-      margin-bottom: 12px; 
-      border: 2px solid #6c5ce7; /* Outline tegas sesuai gambar */
+      background: white; border-radius: 20px; padding: 18px;
+      margin-bottom: 15px; border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      transition: transform 0.2s;
     }
+    .product-card:active { transform: scale(0.98); }
     
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+
     .badge-custom {
-      font-size: 10px; padding: 4px 10px; border-radius: 6px;
-      text-transform: uppercase; font-weight: 700; color: #fff;
+      font-size: 10px; padding: 5px 12px; border-radius: 10px;
+      text-transform: uppercase; font-weight: 700; color: #555;
     }
     
     .merk-label { 
-      font-size: 10px; color: #b45309; font-weight: 700; 
-      background: #fef3c7; padding: 3px 8px; border-radius: 5px;
+      font-size: 11px; color: #718096; font-weight: 600; 
+      background: #f7fafc; padding: 4px 10px; border-radius: 8px;
     }
 
-    .product-name { font-weight: 700; font-size: 14px; margin: 12px 0; color: #1e293b; }
+    .product-name { 
+      font-family: 'Poppins', sans-serif; font-weight: 600; 
+      color: #2d3748; font-size: 15px; margin-bottom: 15px;
+      line-height: 1.4;
+    }
 
-    /* BUTTONS: Tanpa gradasi/efek cahaya agar HP tidak panas */
-    .button-group { display: flex; gap: 8px; }
-    
+    .button-group { display: flex; gap: 10px; }
     .btn-aff {
-      flex: 1; border-radius: 8px; padding: 10px; font-size: 12px;
+      flex: 1; border-radius: 12px; padding: 12px; font-size: 12px;
       font-weight: 700; text-align: center; text-decoration: none !important;
-      color: white !important; display: flex; align-items: center; justify-content: center; gap: 5px;
-      border: 2px solid #000; /* Outline hitam tegas */
+      color: white !important; display: flex; align-items: center; 
+      justify-content: center; gap: 6px; border: none;
+      transition: 0.3s;
     }
+    .shopee { background: #ff8b94; box-shadow: 0 4px 12px rgba(255, 139, 148, 0.3); }
+    .tiktok { background: #4a4a4a; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
     
-    .shopee { background: #ee4d2d; }
-    .tiktok { background: #000; }
-
-    /* Warna Kategori Pastel */
-    .c-1 { background: #74b9ff; }
-    .c-2 { background: #ff7675; }
-    .c-3 { background: #55efc4; color: #000 !important; }
-    .c-4 { background: #a29bfe; }
-    .c-5 { background: #ffeaa7; color: #000 !important; }
-
+    /* Skeleton Loader */
+    .loader-text { color: #a0aec0; font-style: italic; }
   </style>
 </head>
 <body>
@@ -98,71 +126,111 @@
 <div class="sticky-header">
   <div class="header-top">
     <div class="brand-text">Katalog<span>UTI</span></div>
-    <div class="d-flex gap-2">
-      <button class="btn-top" onclick="showDisclaimer()">Disclaimer</button>
-      <button class="btn-top" onclick="showGuide()">Panduan</button>
+    <div class="header-btns">
+      <button class="btn-custom-top btn-disc" onclick="showDisclaimer()">Disclaimer</button>
+      <button class="btn-custom-top btn-guide" onclick="showGuide()">Panduan</button>
     </div>
   </div>
-  <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="search()">
-  <select id="categoryDropdown" onchange="search()">
-    <option value="Semua">📂 Semua Kategori</option>
-  </select>
+  
+  <input type="text" id="searchInput" placeholder="Cari barang atau merk kesukaanmu..." onkeyup="search()">
+  
+  <div class="filter-section">
+    <select id="categoryDropdown" onchange="search()">
+      <option value="Semua">📂 Semua Kategori</option>
+      <option value="Pakaian & Gaya">👕 Pakaian & Gaya</option>
+      <option value="Kesehatan & Perawatan">💖 Kesehatan & Perawatan</option>
+      <option value="Perabot & Dekorasi">🏠 Perabot & Dekorasi</option>
+      <option value="Gadget & Elektronik">📱 Gadget & Elektronik</option>
+      <option value="Kebutuhan Rumah">🛒 Kebutuhan Rumah</option>
+      <option value="Ibu & Anak">👶 Ibu & Anak</option>
+      <option value="Hobi & Otomotif">🏍️ Hobi & Otomotif</option>
+      <option value="Viral & Unik">✨ Viral & Unik</option>
+    </select>
+  </div>
 </div>
 
-<div class="main-wrapper" id="productList">
-  <div class="text-center py-5 text-muted small">Memuat data...</div>
+<div class="main-wrapper">
+  <div id="productList">
+    <div class="text-center py-5 loader-text">
+      <div class="spinner-border text-danger spinner-border-sm mb-2" role="status"></div><br>
+      Menyiapkan barang cantik...
+    </div>
+  </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
 <script>
-  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVyE4Tz42jVQefjYdZZ-Lhn1ApYL9ehbaX2MByWWfM65NPNS2TKugPjoFe-oJTGxylW2hhz-r849y/pub?output=csv';
   let localData = [];
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVyE4Tz42jVQefjYdZZ-Lhn1ApYL9ehbaX2MByWWfM65NPNS2TKugPjoFe-oJTGxylW2hhz-r849y/pub?output=csv';
 
-  async function fetchData() {
-    try {
-      const response = await fetch(SHEET_URL);
-      const csv = await response.text();
-      const lines = csv.split('\n');
-      localData = lines.slice(1).map(line => {
-        const matches = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-        return matches ? matches.map(m => m.replace(/^"|"$/g, '')) : [];
-      }).filter(r => r.length > 0 && r[0] !== "");
-      renderData(localData);
-      
-      const cats = [...new Set(localData.map(r => r[1]))].filter(c => c);
-      const dropdown = document.getElementById('categoryDropdown');
-      cats.forEach(c => {
-        const opt = document.createElement('option');
-        opt.value = opt.text = c;
-        dropdown.add(opt);
-      });
-    } catch (e) {
-      document.getElementById('productList').innerHTML = "Gagal memuat.";
-    }
+  // Fungsi ambil data dari Google Sheets (CSV)
+  function init() {
+    Papa.parse(CSV_URL, {
+      download: true,
+      header: false,
+      complete: function(results) {
+        // Hapus baris header jika ada (biasanya baris pertama)
+        localData = results.data.slice(1); 
+        renderData(localData);
+      }
+    });
   }
 
   function renderData(data) {
     const list = document.getElementById('productList');
-    const cols = ['c-1', 'c-2', 'c-3', 'c-4', 'c-5'];
-    list.innerHTML = data.map((row, i) => `
-      <div class="product-card">
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="badge-custom ${cols[i % 5]}">${row[1] || 'Viral'}</span>
-          <span class="merk-label">${row[2] || '-'}</span>
+    let html = '';
+    
+    // Filter data kosong
+    const validData = data.filter(row => row[0] && row[0].trim() !== "");
+
+    if(validData.length === 0) {
+      list.innerHTML = `<div class="text-center py-5 text-muted small">Barang tidak ditemukan.</div>`;
+      return;
+    }
+
+    validData.forEach(row => {
+      const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
+      
+      // Map warna pastel
+      let color = "#e2e8f0"; // Default
+      if(kategori === "Pakaian & Gaya") color = "var(--pastel-red)";
+      if(kategori === "Kesehatan & Perawatan") color = "var(--soft-pink)";
+      if(kategori === "Perabot & Dekorasi") color = "var(--pastel-green)";
+      if(kategori === "Gadget & Elektronik") color = "var(--pastel-blue)";
+      if(kategori === "Kebutuhan Rumah") color = "var(--pastel-orange)";
+      if(kategori === "Ibu & Anak") color = "#c3ebff";
+      if(kategori === "Hobi & Otomotif") color = "#cbd5e0";
+      if(kategori === "Viral & Unik") color = "var(--pastel-purple)";
+
+      html += `
+        <div class="product-card">
+          <div class="card-top">
+            <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
+            <span class="merk-label">${merk || '-'}</span>
+          </div>
+          <div class="product-name">${nama}</div>
+          <div class="button-group">
+            <a href="${shopee}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
+            <a href="${tiktok}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+          </div>
         </div>
-        <div class="product-name">${row[0]}</div>
-        <div class="button-group">
-          <a href="${row[3]}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
-          <a href="${row[4]}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-        </div>
-      </div>
-    `).join('');
+      `;
+    });
+    list.innerHTML = html;
   }
 
   function search() {
-    const t = document.getElementById('searchInput').value.toLowerCase();
-    const c = document.getElementById('categoryDropdown').value;
-    const f = localData.filter(r => (r[0] + (r[2]||"")).toLowerCase().includes(t) && (c==='Semua' || r[1]===c));
-    renderData(f);
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    const cat = document.getElementById('categoryDropdown').value;
+
+    const filtered = localData.filter(row => {
+      if(!row[0]) return false;
+      const matchSearch = (row[0] + (row[2] || "") + (row[5] || "")).toString().toLowerCase().includes(term);
+      const matchCat = (cat === 'Semua' || row[1] === cat);
+      return matchSearch && matchCat;
+    });
+    renderData(filtered);
   }
 
   function showGuide() {
@@ -170,10 +238,15 @@
   }
 
   function showDisclaimer() {
-    alert("📢 DISCLAIMER & PERJANJIAN\n\n1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
+    alert("📢 DISCLAIMER & PERJANJIAN\n\n" +
+          "1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n" +
+          "2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n" +
+          "3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n" +
+          "4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
   }
 
-  window.onload = fetchData;
+  // Jalankan init saat halaman dimuat
+  window.onload = init;
 </script>
 </body>
 </html>
