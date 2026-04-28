@@ -11,7 +11,7 @@
 
   <style>
     :root {
-      --bg-mint: #d1f1e9; /* Warna latar sesuai lampiran */
+      --bg-mint: #d1f1e9;
       --card-white: #ffffff;
       --text-dark: #1e293b;
     }
@@ -23,30 +23,25 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Sticky Header tetap mengikuti struktur asli */
     .sticky-header {
       position: sticky; top: 0; z-index: 1000;
       background: var(--bg-mint); 
       padding: 12px;
     }
 
-    /* Judul asli: Katalog (Merah), UTI (Hitam) */
     .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
     .brand-text span { color: #000000; }
     
     .header-top { display: flex; justify-content: space-between; align-items: center; }
     .header-btns { display: flex; gap: 4px; }
 
-    /* Input Search gaya estetik mint */
     #searchInput {
       border-radius: 15px; padding: 12px 18px; border: none;
       width: 100%; outline: none; font-size: 14px; margin: 10px 0;
-      background: #e6f6f2; /* Warna box search sesuai lampiran */
+      background: #e6f6f2;
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
 
-    .filter-section { display: flex; gap: 8px; align-items: center; }
-    
     #categoryDropdown {
       flex: 1; border-radius: 12px; padding: 10px;
       border: none; font-size: 13px;
@@ -55,48 +50,71 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     }
 
-    /* Wrapper utama dengan lengkungan besar di bagian bawah header */
     .main-wrapper { 
       background: var(--card-white);
       border-top-left-radius: 35px;
       border-top-right-radius: 35px;
-      padding: 20px 15px;
+      padding: 25px 15px;
       min-height: 85vh;
       margin-top: 5px;
       box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
     }
 
-    /* Product Card dengan aksen warna asli Anda */
+    /* PENYESUAIAN KARTU PRODUK SESUAI GAMBAR BARU */
     .product-card {
-      background: white; border-radius: 20px; padding: 16px;
-      margin-bottom: 15px; border: 1px solid #f1f1f1;
-      border-left-width: 5px; /* Tetap pertahankan aksen border kiri asli */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      background: white; 
+      border-radius: 25px; /* Lebih rounded sesuai gambar */
+      padding: 20px;
+      margin-bottom: 20px; 
+      border: none;
+      /* Border kiri melengkung seperti di gambar */
+      border-left: 6px solid #ccc; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
     }
     
     .badge-custom {
-      font-size: 9px; padding: 4px 10px; border-radius: 8px;
+      font-size: 10px; padding: 5px 12px; border-radius: 10px;
       text-transform: uppercase; font-weight: 700; color: white;
+      letter-spacing: 0.3px;
     }
     
     .merk-label { 
-      font-size: 10px; color: #b45309; font-weight: 700; 
-      background: #fef3c7; padding: 3px 10px; border-radius: 6px;
+      font-size: 10px; color: #b45309; font-weight: 800; 
+      background: #fef3c7; padding: 4px 12px; border-radius: 8px;
+      text-transform: uppercase;
     }
 
-    .product-name { font-weight: 600; color: #1e293b; font-size: 14px; margin: 12px 0; }
+    .product-name { 
+      font-weight: 700; color: #1e293b; font-size: 16px; 
+      margin: 15px 0; 
+      line-height: 1.4;
+    }
 
-    .button-group { display: flex; gap: 8px; }
+    .button-group { display: flex; gap: 10px; }
+    
     .btn-aff {
-      flex: 1; border-radius: 12px; padding: 10px; font-size: 12px;
+      flex: 1; border-radius: 15px; padding: 12px; font-size: 13px;
       font-weight: 700; text-align: center; text-decoration: none !important;
-      color: white !important; display: flex; align-items: center; justify-content: center; gap: 4px;
-      transition: transform 0.2s;
+      color: white !important; display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: all 0.2s ease;
     }
-    .btn-aff:active { transform: scale(0.96); }
 
-    .shopee { background: #ff7675; box-shadow: 0 4px 12px rgba(255, 118, 117, 0.2); }
-    .tiktok { background: #2d3436; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+    .btn-aff:active { transform: scale(0.95); }
+
+    /* Warna Tombol lebih Soft sesuai UI baru */
+    .shopee { 
+      background: #ff7675; 
+      box-shadow: 0 5px 15px rgba(255, 118, 117, 0.3); 
+    }
+    .tiktok { 
+      background: #353b48; 
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
+    }
+
+    .label-row {
+      display: flex; justify-content: space-between; align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -140,22 +158,19 @@
 
 <script>
   let localData = [];
-  // Link CSV Google Sheets Anda
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9ETE1X3iKPNOXuwVC0LIxjt01bMb_PbJf8P8srgmaFyqS9HyWrFgnLNAehl1wDY4fouEijqOj0Bfz/pub?output=csv';
 
-  // Inisialisasi pengambilan data (diubah dari google.script ke fetch CSV agar jalan di GitHub)
   function init() {
     Papa.parse(CSV_URL, {
       download: true,
       header: false,
       complete: function(results) {
-        localData = results.data.slice(1); // Lewati header
+        localData = results.data.slice(1); 
         renderData(localData);
       }
     });
   }
 
-  // FUNGSI RENDER DATA (Sama dengan struktur asli)
   function renderData(data) {
     const list = document.getElementById('productList');
     let html = '';
@@ -170,20 +185,15 @@
     validData.forEach(row => {
       const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
       
-      // Pewarnaan kategori asli Anda
       let color = "#94a3b8";
-      if(kategori === "Pakaian & Gaya") color = "#f43f5e";
-      if(kategori === "Kesehatan & Perawatan") color = "#ec4899";
-      if(kategori === "Perabot & Dekorasi") color = "#10b981";
-      if(kategori === "Gadget & Elektronik") color = "#3b82f6";
-      if(kategori === "Kebutuhan Rumah") color = "#f59e0b";
-      if(kategori === "Ibu & Anak") color = "#06b6d4";
-      if(kategori === "Hobi & Otomotif") color = "#475569";
-      if(kategori === "Viral & Unik") color = "#8b5cf6";
+      if(kategori === "Pakaian & Gaya") color = "#4834d4"; // Contoh biru soft
+      if(kategori === "Gadget & Elektronik") color = "#3867d6"; // Sesuai gambar referensi
+      if(kategori === "Kesehatan & Perawatan") color = "#eb4d4b";
+      if(kategori === "Perabot & Dekorasi") color = "#20bf6b";
 
       html += `
         <div class="product-card" style="border-left-color: ${color}">
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="label-row">
             <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
             <span class="merk-label">${merk || '-'}</span>
           </div>
@@ -198,11 +208,9 @@
     list.innerHTML = html;
   }
 
-  // FUNGSI SEARCH (Sama persis dengan logika asli Anda)
   function search() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const cat = document.getElementById('categoryDropdown').value;
-
     const filtered = localData.filter(row => {
       if(!row[0]) return false;
       const matchSearch = (row[0] + (row[2] || "") + (row[5] || "")).toString().toLowerCase().includes(term);
@@ -212,17 +220,12 @@
     renderData(filtered);
   }
 
-  // TEKS DISCLAIMER & PANDUAN (Sama persis dengan script asli Anda)
   function showGuide() {
     alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Jika terlalu banyak pilihan, pilih kategori yang diinginkan.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
   }
 
   function showDisclaimer() {
-    alert("📢 DISCLAIMER & PERJANJIAN\n\n" +
-          "1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n" +
-          "2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n" +
-          "3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n" +
-          "4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
+    alert("📢 DISCLAIMER & PERJANJIAN\n\n1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
   }
 
   window.onload = init;
