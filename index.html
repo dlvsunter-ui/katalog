@@ -3,187 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Katalog UTI - GitHub Edition</title>
+  <title>Katalog UTI</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
     :root {
-      --glass: rgba(255, 255, 255, 0.8);
-      --border: rgba(255, 255, 255, 0.3);
+      /* Palette terinspirasi dari gambar referensi */
+      --bg-gradient: linear-gradient(135deg, #2d3475 0%, #101010 100%);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-main: #ffffff;
+      --accent-neon: #00f2fe; /* Cyan menyala */
     }
 
     body {
-      margin: 0; padding: 0;
-      background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); /* Warna Muted Soft */
-      background-image: 
-        radial-gradient(at 0% 0%, hsla(253,16%,80%,1) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(225,39%,85%,1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(339,49%,85%,1) 0, transparent 50%);
+      margin: 0; padding: 0; 
+      /* Background Gradient Mewah */
+      background: var(--bg-gradient);
       background-attachment: fixed;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      min-height: 100vh; color: #333;
+      min-height: 100vh;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
     }
 
     .sticky-header {
       position: sticky; top: 0; z-index: 1000;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      padding: 15px; border-bottom: 1px solid var(--border);
+      /* Header Transparan (Blur kuat) */
+      background: rgba(16, 16, 16, 0.5);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      padding: 15px;
+      border-bottom: 1px solid var(--glass-border);
     }
 
-    .brand-text { font-weight: 800; font-size: 1.4rem; color: #4a4e69; }
-    .btn-top {
-      background: rgba(255, 255, 255, 0.4);
-      border: 1px solid var(--border);
-      color: #4a4e69; font-size: 10px; font-weight: 800;
-      padding: 6px 12px; border-radius: 20px;
+    .brand-text { 
+      font-weight: 800; font-size: 1.6rem; 
+      color: #fff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.5);
     }
+    
+    .brand-text span { color: var(--accent-neon); text-shadow: 0 0 10px var(--accent-neon); }
+
+    /* Tombol Transparan Atas */
+    .btn-top {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8); 
+      font-size: 10px; font-weight: 700;
+      padding: 6px 14px; border-radius: 20px;
+      transition: 0.3s;
+    }
+    .btn-top:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 
     #searchInput {
-      border-radius: 15px; padding: 12px 18px; border: 1px solid var(--border);
+      border-radius: 18px; padding: 14px 20px; 
+      border: 1px solid var(--glass-border);
       width: 100%; outline: none; font-size: 14px; margin: 15px 0 10px 0;
-      background: var(--glass); box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      transition: 0.3s;
     }
+    #searchInput:focus { border-color: var(--accent-neon); box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
 
     #categoryDropdown {
-      width: 100%; border-radius: 12px; padding: 10px;
-      border: 1px solid var(--border); font-size: 13px;
-      font-weight: 600; color: #444; background: var(--glass);
+      width: 100%; border-radius: 15px; padding: 12px;
+      border: 1px solid var(--glass-border); font-size: 13px;
+      font-weight: 600; color: #fff; 
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer; outline: none;
     }
+    #categoryDropdown option { background: #101010; color: #fff; }
 
     .main-wrapper { padding: 15px; }
 
+    /* Card Aesthetic (Ultra Glassmorphism) */
     .product-card {
       background: var(--glass);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-radius: 24px; padding: 20px; margin-bottom: 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      transition: transform 0.2s;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 28px; padding: 22px;
+      margin-bottom: 20px; 
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .product-card:active { transform: scale(0.97); }
 
     .badge-custom {
-      font-size: 9px; padding: 5px 12px; border-radius: 10px;
-      font-weight: 800; color: white; background: #9b59b6;
-    }
-
-    .merk-label { 
-      font-size: 10px; color: #7f8c8d; font-weight: 700; 
-      background: rgba(255, 255, 255, 0.5);
-      padding: 3px 10px; border-radius: 8px;
-    }
-
-    .product-name { font-weight: 700; color: #2d3436; font-size: 15px; margin: 15px 0; }
-
-    .btn-aff {
-      flex: 1; border-radius: 14px; padding: 11px; font-size: 12px;
-      font-weight: 800; text-decoration: none !important; color: white !important;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 10px; padding: 6px 14px; border-radius: 12px;
+      font-weight: 800; color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
-    .shopee { background: #ee4d2d; }
-    .tiktok { background: #000; }
+    .merk-label { 
+      font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; 
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 12px; border-radius: 10px;
+    }
 
-    .loading-screen { text-align: center; padding: 50px; color: #4a4e69; }
+    .product-name { 
+      font-weight: 700; color: #ffffff; 
+      font-size: 16px; margin: 18px 0;
+      line-height: 1.5;
+    }
+
+    /* Tombol Shopee & TikTok Berwarna Berani */
+    .button-group { display: flex; gap: 12px; }
+    
+    .btn-aff {
+      flex: 1; border-radius: 16px; padding: 14px; font-size: 13px;
+      font-weight: 800; text-align: center; text-decoration: none !important;
+      color: white !important; display: flex; align-items: center; 
+      justify-content: center; gap: 8px;
+      transition: opacity 0.2s;
+    }
+    
+    .shopee { background: linear-gradient(135deg, #ff9966, #ff5e62); box-shadow: 0 5px 15px rgba(255, 94, 98, 0.3); }
+    .tiktok { background: #000000; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+    
+    .btn-aff:active { opacity: 0.8; }
+    
+    /* Warna Gradient Badge per Kategori */
+    .grad-pakaian { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: #000 !important; }
+    .grad-gadget { background: linear-gradient(45deg, #2af598, #009efd); color: #000 !important; }
+    .grad-perabot { background: linear-gradient(45deg, #fccb90, #d57eeb); color: #000 !important; }
+    .grad-viral { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .grad-default { background: rgba(255,255,255,0.1); }
+
   </style>
 </head>
 <body>
 
 <div class="sticky-header">
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="brand-text">Katalog UTI</div>
-    <div class="header-btns">
-      <button class="btn-top" onclick="alert('📢 Link yang kami berikan sudah difilter agar aman & terpercaya.')">Disclaimer</button>
-      <button class="btn-top" onclick="alert('✨ Ketik barang favoritmu & pilih platform belanja!')">Panduan</button>
+  <div class="header-top d-flex justify-content-between align-items-center">
+    <div class="brand-text">Katalog<span>UTI</span></div>
+    <div class="header-btns d-flex gap-2">
+      <button class="btn-top" onclick="alert('📢 Link aman dan terverifikasi.')">Disclaimer</button>
+      <button class="btn-top" onclick="alert('✨ Cari barang, lalu klik tombol belanja!')">Panduan</button>
     </div>
   </div>
   
   <input type="text" id="searchInput" placeholder="Cari barang atau merk..." onkeyup="search()">
+  
   <select id="categoryDropdown" onchange="search()">
     <option value="Semua">🌈 Semua Vibes</option>
     </select>
 </div>
 
-<div class="main-wrapper" id="productList">
-  <div class="loading-screen">
-    <div class="spinner-border spinner-border-sm mb-2"></div><br>
-    Ambil data dari Sheets...
+<div class="main-wrapper">
+  <div id="productList">
+    <div class="text-center py-5 text-white">
+       <div class="spinner-border spinner-border-sm text-info mb-2" role="status"></div><br>
+       <small>Menyiapkan Barang Viral...</small>
+    </div>
   </div>
 </div>
 
 <script>
-  // GANTI LINK DI BAWAH INI DENGAN LINK PUBLISH CSV ANDA DARI LANGKAH 1
-  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVyE4Tz42jVQefjYdZZ-Lhn1ApYL9ehbaX2MByWWfM65NPNS2TKugPjoFe-oJTGxylW2hhz-r849y/pub?output=csv';
+  // MASUKKAN LINK CSV ANDA DI SINI
+  const SHEET_URL = 'PASTE_LINK_CSV_ANDA_DISINI';
 
   let localData = [];
 
   async function fetchData() {
     try {
       const response = await fetch(SHEET_URL);
-      const data = await response.text();
-      const rows = data.split('\n').slice(1); // Hapus header
-      
-      localData = rows.map(row => {
-        // Handle CSV parsing sederhana (pisahkan berdasarkan koma)
-        return row.split(',').map(cell => cell.replace(/"/g, '').trim());
-      }).filter(row => row[0] !== ""); // Filter baris kosong
-
+      const csvData = await response.text();
+      const lines = csvData.split('\n').map(l => l.split(','));
+      localData = lines.slice(1).filter(row => row[0]); 
       renderData(localData);
-      populateCategories(localData);
-    } catch (error) {
-      document.getElementById('productList').innerHTML = "Gagal mengambil data. Pastikan Sheet sudah dipublish.";
-    }
+      
+      const dropdown = document.getElementById('categoryDropdown');
+      const cats = [...new Set(localData.map(r => r[1]))].filter(c => c);
+      cats.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = opt.text = c;
+        dropdown.add(opt);
+      });
+    } catch (e) { document.getElementById('productList').innerHTML = "<div class='text-center text-danger'>Error mengambil data. Pastikan Sheet dipublish.</div>"; }
   }
 
   function renderData(data) {
     const list = document.getElementById('productList');
-    if (data.length === 0) {
-      list.innerHTML = "<div class='text-center py-5'>Barang tidak ditemukan 🥲</div>";
-      return;
+    if(data.length === 0) {
+        list.innerHTML = "<div class='text-center py-5 text-white-50'>Yah, barangnya nggak ketemu... 🥲</div>";
+        return;
     }
 
-    list.innerHTML = data.map(row => `
-      <div class="product-card">
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="badge-custom">${row[1] || 'Info'}</span>
-          <span class="merk-label">${row[2] || '-'}</span>
-        </div>
-        <div class="product-name">${row[0]}</div>
-        <div class="d-flex gap-2">
-          <a href="${row[3]}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
-          <a href="${row[4]}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-        </div>
-      </div>
-    `).join('');
-  }
+    list.innerHTML = data.map(row => {
+      let gradBadge = "grad-default";
+      const cat = (row[1] || "").toLowerCase();
+      if(cat.includes("pakaian")) gradBadge = "grad-pakaian";
+      if(cat.includes("gadget")) gradBadge = "grad-gadget";
+      if(cat.includes("perabot")) gradBadge = "grad-perabot";
+      if(cat.includes("viral")) gradBadge = "grad-viral";
 
-  function populateCategories(data) {
-    const dropdown = document.getElementById('categoryDropdown');
-    const categories = [...new Set(data.map(row => row[1]))].filter(c => c);
-    categories.forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat;
-      opt.innerHTML = cat;
-      dropdown.appendChild(opt);
-    });
-  }
-
-  function search() {
-    const term = document.getElementById('searchInput').value.toLowerCase();
-    const cat = document.getElementById('categoryDropdown').value;
-    const filtered = localData.filter(row => {
-      const matchSearch = (row[0] + row[2] + (row[5] || "")).toLowerCase().includes(term);
-      const matchCat = (cat === 'Semua' || row[1] === cat);
-      return matchSearch && matchCat;
-    });
-    renderData(filtered);
-  }
-
-  window.onload = fetchData;
-</script>
-</body>
-</html>
+      return `
+        <div class="product-card">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="badge-custom ${gradBadge}">${row[1] || 'Random'}</span>
+            <span class="merk-label">${row[2] || 'No Brand'}</span>
+          </div>
+          <div class="product-name">${row[0]}
