@@ -7,144 +7,131 @@
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-mint: #d1f1e9;
+      --bg-mint: #d1f1e9; /* Warna latar sesuai lampiran */
       --card-white: #ffffff;
-      --text-dark: #333333;
-      --search-fill: #e6f6f2;
+      --text-dark: #1e293b;
     }
 
     body {
       margin: 0; padding: 0; 
       background-color: var(--bg-mint);
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header tetap ringan tanpa gambar */
-    .header-wrapper {
-      padding: 20px 20px 10px 20px;
-      position: sticky; top: 0; z-index: 100;
-      background-color: var(--bg-mint);
+    /* Sticky Header tetap mengikuti struktur asli */
+    .sticky-header {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--bg-mint); 
+      padding: 12px;
     }
 
-    .top-nav {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-    }
+    /* Judul asli: Katalog (Merah), UTI (Hitam) */
+    .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
+    .brand-text span { color: #000000; }
+    
+    .header-top { display: flex; justify-content: space-between; align-items: center; }
+    .header-btns { display: flex; gap: 4px; }
 
-    .nav-circle {
-      width: 40px; height: 40px; background: white; border: none;
-      border-radius: 12px; display: flex; align-items: center;
-      justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      color: #666; transition: 0.2s;
-    }
-
-    .nav-circle:active { transform: scale(0.9); }
-
-    .brand-title { font-weight: 700; font-size: 1.2rem; color: #2d3436; }
-
-    /* Search Box ala Lampiran */
-    .search-container {
-      background: var(--search-fill);
-      border-radius: 15px; padding: 5px 15px;
-      display: flex; align-items: center; margin-bottom: 15px;
-    }
-
+    /* Input Search gaya estetik mint */
     #searchInput {
-      border: none; background: transparent; padding: 10px;
-      width: 100%; outline: none; font-size: 14px;
+      border-radius: 15px; padding: 12px 18px; border: none;
+      width: 100%; outline: none; font-size: 14px; margin: 10px 0;
+      background: #e6f6f2; /* Warna box search sesuai lampiran */
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
 
+    .filter-section { display: flex; gap: 8px; align-items: center; }
+    
     #categoryDropdown {
-      width: 100%; border-radius: 12px; border: none;
-      padding: 12px; font-weight: 600; font-size: 13px;
-      color: #555; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      flex: 1; border-radius: 12px; padding: 10px;
+      border: none; font-size: 13px;
+      font-weight: 600; color: #334155; background: #fff;
+      outline: none; cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     }
 
-    /* Area Konten Utama Putih Melengkung */
-    .main-content {
+    /* Wrapper utama dengan lengkungan besar di bagian bawah header */
+    .main-wrapper { 
       background: var(--card-white);
       border-top-left-radius: 35px;
       border-top-right-radius: 35px;
-      padding: 25px 20px;
-      min-height: 80vh;
-      margin-top: 15px;
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.02);
+      padding: 20px 15px;
+      min-height: 85vh;
+      margin-top: 5px;
+      box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
     }
 
-    /* Card Produk Ringkas */
+    /* Product Card dengan aksen warna asli Anda */
     .product-card {
-      background: white; border-radius: 20px; padding: 18px;
-      margin-bottom: 15px; border: 1px solid #f8f9fa;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      background: white; border-radius: 20px; padding: 16px;
+      margin-bottom: 15px; border: 1px solid #f1f1f1;
+      border-left-width: 5px; /* Tetap pertahankan aksen border kiri asli */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
     }
-
-    .label-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
-
-    .cat-badge {
-      font-size: 9px; font-weight: 800; padding: 4px 10px;
-      border-radius: 10px; text-transform: uppercase;
-    }
-
-    .merk-name { font-size: 11px; color: #999; font-weight: 600; }
-
-    .product-name {
-      font-weight: 700; font-size: 15px; color: #333;
-      margin-bottom: 15px; line-height: 1.4;
-    }
-
-    /* Button Action */
-    .btn-group-custom { display: flex; gap: 8px; }
     
-    .btn-buy {
-      flex: 1; border-radius: 12px; padding: 10px;
-      font-size: 12px; font-weight: 700; border: none;
-      color: white !important; text-decoration: none !important;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
+    .badge-custom {
+      font-size: 9px; padding: 4px 10px; border-radius: 8px;
+      text-transform: uppercase; font-weight: 700; color: white;
+    }
+    
+    .merk-label { 
+      font-size: 10px; color: #b45309; font-weight: 700; 
+      background: #fef3c7; padding: 3px 10px; border-radius: 6px;
     }
 
-    .shopee-btn { background: #ff7675; }
-    .tiktok-btn { background: #2d3436; }
+    .product-name { font-weight: 600; color: #1e293b; font-size: 14px; margin: 12px 0; }
 
-    /* Spinner Smooth */
-    .loader { color: #a2d2c6; text-align: center; padding: 50px 0; font-size: 14px; font-weight: 600; }
+    .button-group { display: flex; gap: 8px; }
+    .btn-aff {
+      flex: 1; border-radius: 12px; padding: 10px; font-size: 12px;
+      font-weight: 700; text-align: center; text-decoration: none !important;
+      color: white !important; display: flex; align-items: center; justify-content: center; gap: 4px;
+      transition: transform 0.2s;
+    }
+    .btn-aff:active { transform: scale(0.96); }
+
+    .shopee { background: #ff7675; box-shadow: 0 4px 12px rgba(255, 118, 117, 0.2); }
+    .tiktok { background: #2d3436; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
   </style>
 </head>
 <body>
 
-<div class="header-wrapper">
-  <div class="top-nav">
-    <button class="nav-circle" onclick="showDisclaimer()"><i class="fas fa-info"></i></button>
-    <div class="brand-title">Katalog UTI</div>
-    <button class="nav-circle" onclick="showGuide()"><i class="fas fa-question"></i></button>
+<div class="sticky-header">
+  <div class="header-top">
+    <div class="brand-text">Katalog<span>UTI</span></div>
+    <div class="header-btns">
+      <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showDisclaimer()" style="font-size: 9px; font-weight: 700;">Disclaimer</button>
+      <button class="btn btn-sm btn-dark rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
+    </div>
   </div>
-
-  <div class="search-container">
-    <i class="fas fa-search" style="color: #99beae;"></i>
-    <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="search()">
+  
+  <input type="text" id="searchInput" placeholder="Ketik nama barang atau merk..." onkeyup="search()">
+  
+  <div class="filter-section">
+    <select id="categoryDropdown" onchange="search()">
+      <option value="Semua">📂 Semua Kategori</option>
+      <option value="Pakaian & Gaya">👕 Pakaian & Gaya</option>
+      <option value="Kesehatan & Perawatan">💖 Kesehatan & Perawatan</option>
+      <option value="Perabot & Dekorasi">🏠 Perabot & Dekorasi</option>
+      <option value="Gadget & Elektronik">📱 Gadget & Elektronik</option>
+      <option value="Kebutuhan Rumah">🛒 Kebutuhan Rumah</option>
+      <option value="Ibu & Anak">👶 Ibu & Anak</option>
+      <option value="Hobi & Otomotif">🏍️ Hobi & Otomotif</option>
+      <option value="Viral & Unik">✨ Viral & Unik</option>
+    </select>
   </div>
-
-  <select id="categoryDropdown" onchange="search()">
-    <option value="Semua">Semua Kategori</option>
-    <option value="Pakaian & Gaya">👕 Pakaian & Gaya</option>
-    <option value="Kesehatan & Perawatan">💖 Kesehatan & Perawatan</option>
-    <option value="Perabot & Dekorasi">🏠 Perabot & Dekorasi</option>
-    <option value="Gadget & Elektronik">📱 Gadget & Elektronik</option>
-    <option value="Kebutuhan Rumah">🛒 Kebutuhan Rumah</option>
-    <option value="Ibu & Anak">👶 Ibu & Anak</option>
-    <option value="Hobi & Otomotif">🏍️ Hobi & Otomotif</option>
-    <option value="Viral & Unik">✨ Viral & Unik</option>
-  </select>
 </div>
 
-<div class="main-content">
+<div class="main-wrapper">
   <div id="productList">
-    <div class="loader">
-      <div class="spinner-border spinner-border-sm mb-2"></div><br>
-      Memuat katalog...
+    <div class="text-center py-5 text-muted small">
+       <div class="spinner-border spinner-border-sm text-danger mb-2"></div><br>
+       Memuat data...
     </div>
   </div>
 </div>
@@ -153,65 +140,90 @@
 
 <script>
   let localData = [];
+  // Link CSV Google Sheets Anda
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9ETE1X3iKPNOXuwVC0LIxjt01bMb_PbJf8P8srgmaFyqS9HyWrFgnLNAehl1wDY4fouEijqOj0Bfz/pub?output=csv';
 
+  // Inisialisasi pengambilan data (diubah dari google.script ke fetch CSV agar jalan di GitHub)
   function init() {
     Papa.parse(CSV_URL, {
       download: true,
+      header: false,
       complete: function(results) {
-        localData = results.data.slice(1); 
+        localData = results.data.slice(1); // Lewati header
         renderData(localData);
       }
     });
   }
 
+  // FUNGSI RENDER DATA (Sama dengan struktur asli)
   function renderData(data) {
     const list = document.getElementById('productList');
     let html = '';
-    const filteredData = data.filter(row => row[0] && row[0].trim() !== "");
+    
+    const validData = data.filter(row => row[0] && row[0].trim() !== "");
 
-    if(filteredData.length === 0) {
-      list.innerHTML = `<div class="text-center py-5 text-muted small">Barang tidak tersedia.</div>`;
+    if(validData.length === 0) {
+      list.innerHTML = `<div class="text-center py-5 text-muted small">Barang tidak ditemukan.</div>`;
       return;
     }
 
-    filteredData.forEach(row => {
-      const [nama, kategori, merk, shopee, tiktok] = row;
+    validData.forEach(row => {
+      const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
       
-      // Warna label soft tanpa gradien berat agar tetap lancar
-      let bCol = "#eee"; let tCol = "#666";
-      if(kategori === "Pakaian & Gaya") { bCol = "#fff3f3"; tCol = "#ff7675"; }
-      else if(kategori === "Perabot & Dekorasi") { bCol = "#e6fcf5"; tCol = "#20c997"; }
-      else if(kategori === "Kesehatan & Perawatan") { bCol = "#fff0f6"; tCol = "#d6336c"; }
+      // Pewarnaan kategori asli Anda
+      let color = "#94a3b8";
+      if(kategori === "Pakaian & Gaya") color = "#f43f5e";
+      if(kategori === "Kesehatan & Perawatan") color = "#ec4899";
+      if(kategori === "Perabot & Dekorasi") color = "#10b981";
+      if(kategori === "Gadget & Elektronik") color = "#3b82f6";
+      if(kategori === "Kebutuhan Rumah") color = "#f59e0b";
+      if(kategori === "Ibu & Anak") color = "#06b6d4";
+      if(kategori === "Hobi & Otomotif") color = "#475569";
+      if(kategori === "Viral & Unik") color = "#8b5cf6";
 
       html += `
-        <div class="product-card">
-          <div class="label-row">
-            <span class="cat-badge" style="background:${bCol}; color:${tCol}">${kategori || 'Produk'}</span>
-            <span class="merk-name">${merk || '-'}</span>
+        <div class="product-card" style="border-left-color: ${color}">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
+            <span class="merk-label">${merk || '-'}</span>
           </div>
           <div class="product-name">${nama}</div>
-          <div class="btn-group-custom">
-            <a href="${shopee}" target="_blank" class="btn-buy shopee-btn"><i class="fas fa-shopping-bag"></i> Shopee</a>
-            <a href="${tiktok}" target="_blank" class="btn-buy tiktok-btn"><i class="fab fa-tiktok"></i> TikTok</a>
+          <div class="button-group">
+            <a href="${shopee}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
+            <a href="${tiktok}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
           </div>
-        </div>`;
+        </div>
+      `;
     });
     list.innerHTML = html;
   }
 
+  // FUNGSI SEARCH (Sama persis dengan logika asli Anda)
   function search() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const cat = document.getElementById('categoryDropdown').value;
+
     const filtered = localData.filter(row => {
       if(!row[0]) return false;
-      return (row[0].toLowerCase().includes(term) || (row[2]||"").toLowerCase().includes(term)) && (cat === 'Semua' || row[1] === cat);
+      const matchSearch = (row[0] + (row[2] || "") + (row[5] || "")).toString().toLowerCase().includes(term);
+      const matchCat = (cat === 'Semua' || row[1] === cat);
+      return matchSearch && matchCat;
     });
     renderData(filtered);
   }
 
-  function showGuide() { alert("Panduan:\n1. Cari barang\n2. Pilih kategori\n3. Klik tombol belanja"); }
-  function showDisclaimer() { alert("Katalog Affiliate: Kami membantu mencarikan toko terbaik untuk Anda."); }
+  // TEKS DISCLAIMER & PANDUAN (Sama persis dengan script asli Anda)
+  function showGuide() {
+    alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Jika terlalu banyak pilihan, pilih kategori yang diinginkan.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
+  }
+
+  function showDisclaimer() {
+    alert("📢 DISCLAIMER & PERJANJIAN\n\n" +
+          "1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n" +
+          "2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n" +
+          "3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n" +
+          "4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
+  }
 
   window.onload = init;
 </script>
