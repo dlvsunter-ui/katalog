@@ -1,221 +1,218 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Katalog UTI</title>
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-mint: #d1f1e9; 
-      --card-white: #ffffff;
-      --text-dark: #1e293b;
-    }
-
-    body {
-      margin: 0; padding: 0; 
-      background-color: var(--bg-mint);
-      font-family: 'Poppins', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .sticky-header {
-      position: sticky; top: 0; z-index: 1000;
-      background: var(--bg-mint); 
-      padding: 12px;
-    }
-
-    .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
-    .brand-text span { color: #000000; }
-    
-    .header-top { display: flex; justify-content: space-between; align-items: center; }
-    .header-btns { display: flex; gap: 4px; }
-
-    #searchInput {
-      border-radius: 15px; padding: 12px 18px; border: none;
-      width: 100%; outline: none; font-size: 14px; margin: 10px 0;
-      background: #e6f6f2; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-    }
-
-    #categoryDropdown {
-      flex: 1; border-radius: 12px; padding: 10px;
-      border: none; font-size: 13px;
-      font-weight: 600; color: #334155; background: #fff;
-      outline: none; cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    }
-
-    .main-wrapper { 
-      background: var(--card-white);
-      border-top-left-radius: 35px;
-      border-top-right-radius: 35px;
-      padding: 25px 15px;
-      min-height: 85vh;
-      margin-top: 5px;
-      box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
-    }
-
-    /* KARTU PRODUK TANPA BORDER WARNA */
-    .product-card {
-      background: white; 
-      border-radius: 22px; 
-      padding: 20px;
-      margin-bottom: 18px; 
-      border: 1px solid #f1f5f9; /* Border tipis abu-abu agar tetap tegas */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.04); /* Bayangan lembut agar estetik */
-      transition: transform 0.2s;
-    }
-    
-    .badge-custom {
-      font-size: 9px; padding: 5px 12px; border-radius: 10px;
-      text-transform: uppercase; font-weight: 700; color: white;
-      letter-spacing: 0.5px;
-    }
-    
-    .merk-label { 
-      font-size: 10px; color: #b45309; font-weight: 800; 
-      background: #fef3c7; padding: 4px 12px; border-radius: 8px;
-    }
-
-    .product-name { 
-      font-weight: 700; color: #1e293b; font-size: 15px; 
-      margin: 15px 0; line-height: 1.4;
-    }
-
-    .button-group { display: flex; gap: 10px; }
-    
-    .btn-aff {
-      flex: 1; border-radius: 14px; padding: 11px; font-size: 12px;
-      font-weight: 700; text-align: center; text-decoration: none !important;
-      color: white !important; display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
-
-    .shopee { background: #ff7675; box-shadow: 0 4px 10px rgba(255, 118, 117, 0.2); }
-    .tiktok { background: #2d3436; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Katalog UTI</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-mint: #d1f1e9;
+            --card-white: #ffffff;
+            --text-dark: #1e293b;
+        }
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-mint);
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .sticky-header {
+            position: sticky; top: 0; z-index: 1000;
+            background: var(--bg-mint);
+            padding: 12px;
+        }
+        .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
+        .brand-text span { color: #000000; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; }
+        .header-btns { display: flex; gap: 4px; }
+        #searchInput {
+            border-radius: 15px; padding: 12px 18px; border: none;
+            width: 100%; outline: none; font-size: 14px; margin: 10px 0;
+            background: #e6f6f2;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        #categoryDropdown {
+            flex: 1; border-radius: 12px; padding: 10px;
+            border: none; font-size: 13px;
+            font-weight: 600; color: #334155; background: #fff;
+            outline: none; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .main-wrapper {
+            background: var(--card-white);
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 25px 15px;
+            min-height: 85vh;
+            margin-top: 5px;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
+        }
+        .product-card {
+            background: white;
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 18px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+        .badge-custom {
+            font-size: 9px; padding: 5px 12px; border-radius: 10px;
+            text-transform: uppercase; font-weight: 700; color: white;
+            letter-spacing: 0.5px;
+        }
+        .merk-label {
+            font-size: 10px; color: #b45309; font-weight: 800;
+            background: #fef3c7; padding: 4px 12px; border-radius: 8px;
+        }
+        .product-name {
+            font-weight: 700; color: #1e293b; font-size: 15px;
+            margin: 15px 0; line-height: 1.4;
+        }
+        .button-group { display: flex; gap: 10px; }
+        .btn-aff {
+            flex: 1; border-radius: 14px; padding: 11px; font-size: 12px;
+            font-weight: 700; text-align: center; text-decoration: none !important;
+            color: white !important; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .shopee { background: #ff7675; box-shadow: 0 4px 10px rgba(255, 118, 117, 0.2); }
+        .tiktok { background: #2d3436; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+    </style>
 </head>
 <body>
-
-<div class="sticky-header">
-  <div class="header-top">
-    <div class="brand-text">Katalog<span>UTI</span></div>
-    <div class="header-btns">
-      <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showDisclaimer()" style="font-size: 9px; font-weight: 700;">Disclaimer</button>
-      <button class="btn btn-sm btn-dark rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
-    </div>
-  </div>
-  
-  <input type="text" id="searchInput" placeholder="Ketik nama barang atau merk..." onkeyup="search()">
-  
-  <div class="filter-section">
-    <select id="categoryDropdown" onchange="search()">
-      <option value="Semua">📂 Semua Kategori</option>
-      <option value="Pakaian & Gaya">👕 Pakaian & Gaya</option>
-      <option value="Kesehatan & Perawatan">💖 Kesehatan & Perawatan</option>
-      <option value="Perabot & Dekorasi">🏠 Perabot & Dekorasi</option>
-      <option value="Gadget & Elektronik">📱 Gadget & Elektronik</option>
-      <option value="Kebutuhan Rumah">🛒 Kebutuhan Rumah</option>
-      <option value="Ibu & Anak">👶 Ibu & Anak</option>
-      <option value="Hobi & Otomotif">🏍️ Hobi & Otomotif</option>
-      <option value="Viral & Unik">✨ Viral & Unik</option>
-    </select>
-  </div>
-</div>
-
-<div class="main-wrapper">
-  <div id="productList">
-    <div class="text-center py-5 text-muted small">
-       <div class="spinner-border spinner-border-sm text-danger mb-2"></div><br>
-       Memuat data...
-    </div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-
-<script>
-  let localData = [];
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9ETE1X3iKPNOXuwVC0LIxjt01bMb_PbJf8P8srgmaFyqS9HyWrFgnLNAehl1wDY4fouEijqOj0Bfz/pub?output=csv';
-
-  function init() {
-    Papa.parse(CSV_URL, {
-      download: true,
-      header: false,
-      complete: function(results) {
-        localData = results.data.slice(1); 
-        renderData(localData);
-      }
-    });
-  }
-
-  function renderData(data) {
-    const list = document.getElementById('productList');
-    let html = '';
-    
-    const validData = data.filter(row => row[0] && row[0].trim() !== "");
-
-    if(validData.length === 0) {
-      list.innerHTML = `<div class="text-center py-5 text-muted small">Barang tidak ditemukan.</div>`;
-      return;
-    }
-
-    validData.forEach(row => {
-      const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
-      
-      let color = "#94a3b8";
-      if(kategori === "Pakaian & Gaya") color = "#f43f5e";
-      if(kategori === "Kesehatan & Perawatan") color = "#ec4899";
-      if(kategori === "Perabot & Dekorasi") color = "#10b981";
-      if(kategori === "Gadget & Elektronik") color = "#3b82f6";
-      if(kategori === "Kebutuhan Rumah") color = "#f59e0b";
-      if(kategori === "Ibu & Anak") color = "#06b6d4";
-      if(kategori === "Hobi & Otomotif") color = "#475569";
-      if(kategori === "Viral & Unik") color = "#8b5cf6";
-
-      html += `
-        <div class="product-card">
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
-            <span class="merk-label">${merk || '-'}</span>
-          </div>
-          <div class="product-name">${nama}</div>
-          <div class="button-group">
-            <a href="${shopee}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
-            <a href="${tiktok}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-          </div>
+    <div class="sticky-header">
+        <div class="header-top">
+            <div class="brand-text">Katalog<span>UTI</span></div>
+            <div class="header-btns">
+                <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showDisclaimer()" style="font-size: 9px; font-weight: 700;">Disclaimer</button>
+                <button class="btn btn-sm btn-dark rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
+            </div>
         </div>
-      `;
-    });
-    list.innerHTML = html;
-  }
+        <input type="text" id="searchInput" placeholder="Ketik nama barang atau merk..." onkeyup="search()">
+        <div class="filter-section">
+            <select id="categoryDropdown" onchange="search()">
+                <option value="Semua">📂 Semua Kategori</option>
+                <option value="Pakaian & Gaya">👕 Pakaian & Gaya</option>
+                <option value="Kesehatan & Perawatan">💖 Kesehatan & Perawatan</option>
+                <option value="Perabot & Dekorasi">🛋️ Perabot & Dekorasi</option>
+                <option value="Gadget & Elektronik">📱 Gadget & Elektronik</option>
+                <option value="Kebutuhan Rumah">🛒 Kebutuhan Rumah</option>
+                <option value="Ibu & Anak">👶 Ibu & Anak</option>
+                <option value="Hobi & Otomotif">🏎️ Hobi & Otomotif</option>
+                <option value="Viral & Unik">✨ Viral & Unik</option>
+            </select>
+        </div>
+    </div>
 
-  function search() {
-    const term = document.getElementById('searchInput').value.toLowerCase();
-    const cat = document.getElementById('categoryDropdown').value;
+    <div class="main-wrapper">
+        <div id="productList">
+            <div class="text-center py-5 text-muted small">
+                <div class="spinner-border spinner-border-sm text-danger mb-2"></div><br>
+                Memuat data...
+            </div>
+        </div>
+    </div>
 
-    const filtered = localData.filter(row => {
-      if(!row[0]) return false;
-      const matchSearch = (row[0] + (row[2] || "") + (row[5] || "")).toString().toLowerCase().includes(term);
-      const matchCat = (cat === 'Semua' || row[1] === cat);
-      return matchSearch && matchCat;
-    });
-    renderData(filtered);
-  }
+    <!-- Load Library -->
+    <script src="https://cloudflare.com"></script>
+    <script src="https://jsdelivr.net"></script>
 
-  function showGuide() {
-    alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Jika terlalu banyak pilihan, pilih kategori yang diinginkan.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
-  }
+    <script>
+        let localData = [];
+        const CSV_URL = 'https://google.com';
 
-  function showDisclaimer() {
-    alert("📢 DISCLAIMER & PERJANJIAN\n\n1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
-  }
+        function init() {
+            Papa.parse(CSV_URL, {
+                download: true,
+                header: false,
+                complete: function(results) {
+                    // Filter baris kosong agar Fuse.js tidak error
+                    localData = results.data.slice(1).filter(row => row[0] && row[0].trim() !== "");
+                    renderData(localData);
+                }
+            });
+        }
 
-  window.onload = init;
-</script>
+        function renderData(data) {
+            const list = document.getElementById('productList');
+            let html = '';
+
+            if(data.length === 0) {
+                list.innerHTML = `<div class="text-center py-5 text-muted small">Barang tidak ditemukan.</div>`;
+                return;
+            }
+
+            data.forEach(row => {
+                const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
+                let color = "#94a3b8";
+                if(kategori === "Pakaian & Gaya") color = "#f43f5e";
+                if(kategori === "Kesehatan & Perawatan") color = "#ec4899";
+                if(kategori === "Perabot & Dekorasi") color = "#10b981";
+                if(kategori === "Gadget & Elektronik") color = "#3b82f6";
+                if(kategori === "Kebutuhan Rumah") color = "#f59e0b";
+                if(kategori === "Ibu & Anak") color = "#06b6d4";
+                if(kategori === "Hobi & Otomotif") color = "#475569";
+                if(kategori === "Viral & Unik") color = "#8b5cf6";
+
+                html += `
+                <div class="product-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
+                        <span class="merk-label">${merk || '-'}</span>
+                    </div>
+                    <div class="product-name">${nama}</div>
+                    <div class="button-group">
+                        <a href="${shopee}" target="_blank" class="btn-aff shopee"><i class="fas fa-shopping-bag"></i> Shopee</a>
+                        <a href="${tiktok}" target="_blank" class="btn-aff tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                    </div>
+                </div>`;
+            });
+            list.innerHTML = html;
+        }
+
+        function search() {
+            const term = document.getElementById('searchInput').value.trim();
+            const cat = document.getElementById('categoryDropdown').value;
+
+            let filtered = localData;
+
+            // Jika ada kata kunci, gunakan Fuse.js (Fuzzy Search)
+            if (term !== "") {
+                const options = {
+                    keys: [
+                        { name: 'nama', getFn: (row) => row[0] },      // Kolom A
+                        { name: 'merk', getFn: (row) => row[2] },      // Kolom C
+                        { name: 'kataKunci', getFn: (row) => row[5] }  // Kolom F
+                    ],
+                    threshold: 0.4, // Toleransi typo (0.0 sangat ketat, 1.0 sangat bebas)
+                    distance: 100
+                };
+
+                const fuse = new Fuse(localData, options);
+                const result = fuse.search(term);
+                filtered = result.map(res => res.item);
+            }
+
+            // Filter Kategori (berlaku baik saat ada pencarian atau tidak)
+            if (cat !== 'Semua') {
+                filtered = filtered.filter(row => row[1] === cat);
+            }
+
+            renderData(filtered);
+        }
+
+        function showGuide() {
+            alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Jika terlalu banyak pilihan, pilih kategori yang diinginkan.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
+        }
+
+        function showDisclaimer() {
+            alert("📢 DISCLAIMER & PERJANJIAN\n\n1. Terima Kasih sudah berbelanja melalui link 'KatalogUTI'.\n2. Link yang kami berikan tidak menjamin kualitas barang yang diterima.\n3. Kami berharap Anda berbelanja dengan bijak.\n4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
+        }
+
+        window.onload = init;
+    </script>
 </body>
 </html>
