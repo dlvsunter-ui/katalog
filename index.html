@@ -14,6 +14,8 @@
       --bg-mint: #d1f1e9; 
       --card-white: #ffffff;
       --text-dark: #1e293b;
+      --header-h: 120px; /* Tinggi header disesuaikan */
+      --footer-h: 40px;  /* Tinggi footer tipis */
     }
 
     body {
@@ -21,92 +23,115 @@
       background-color: var(--bg-mint);
       font-family: 'Poppins', sans-serif;
       -webkit-font-smoothing: antialiased;
+      padding-top: var(--header-h); /* Jarak untuk header */
+      padding-bottom: calc(var(--footer-h) + 20px); /* Jarak untuk footer */
     }
 
+    /* HEADER TETAP */
     .sticky-header {
-      position: sticky; top: 0; z-index: 1000;
-      background: var(--bg-mint); 
-      padding: 12px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(209, 241, 233, 0.95); 
+      backdrop-filter: blur(10px);
+      padding: 10px 15px;
+      height: var(--header-h);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; justify-content: center;
     }
 
-    .brand-text { font-weight: 800; font-size: 1.4rem; color: #ff0000; }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .brand-text { font-weight: 800; font-size: 1.3rem; color: #ff0000; letter-spacing: -0.5px;}
     .brand-text span { color: #000000; }
-    
-    .header-top { display: flex; justify-content: space-between; align-items: center; }
-    .header-btns { display: flex; gap: 4px; }
+    .header-btns { display: flex; gap: 5px; }
 
     #searchInput {
-      border-radius: 15px; padding: 12px 18px; border: none;
-      width: 100%; outline: none; font-size: 14px; margin: 10px 0;
-      background: #e6f6f2; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+      border-radius: 12px; padding: 10px 15px; border: 1px solid #bde6da;
+      width: 100%; outline: none; font-size: 13px;
+      background: #ffffff; margin-bottom: 8px;
     }
 
+    .filter-section { display: flex; gap: 8px; }
     #categoryDropdown {
-      flex: 1; border-radius: 12px; padding: 10px;
-      border: none; font-size: 13px;
-      font-weight: 600; color: #334155; background: #fff;
-      outline: none; cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      flex: 1; border-radius: 10px; padding: 8px; border: 1px solid #bde6da;
+      font-size: 12px; font-weight: 600; color: #334155; background: #fff;
     }
+    
+    .btn-fav-filter {
+      border-radius: 10px; padding: 8px 12px; border: 1px solid #ff4757;
+      background: white; color: #ff4757; font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: 0.2s;
+    }
+    .btn-fav-filter.active { background: #ff4757; color: white; }
 
+    /* KONTEN UTAMA */
     .main-wrapper { 
       background: var(--card-white);
-      border-top-left-radius: 35px;
-      border-top-right-radius: 35px;
-      padding: 25px 15px;
-      min-height: 85vh;
-      margin-top: 5px;
-      box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
+      border-radius: 30px;
+      padding: 20px 15px;
+      min-height: 70vh;
+      margin: 0 10px;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
     }
 
-    /* KARTU PRODUK TANPA BORDER WARNA */
+    /* KARTU PRODUK */
     .product-card {
-      background: white; 
-      border-radius: 22px; 
-      padding: 20px;
-      margin-bottom: 18px; 
-      border: 1px solid #f1f5f9; /* Border tipis abu-abu agar tetap tegas */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.04); /* Bayangan lembut agar estetik */
-      transition: transform 0.2s;
+      background: white; border-radius: 18px; padding: 18px;
+      margin-bottom: 15px; border: 1px solid #f1f5f9; 
+      box-shadow: 0 8px 15px rgba(0,0,0,0.04);
+      position: relative;
     }
     
     .badge-custom {
-      font-size: 9px; padding: 5px 12px; border-radius: 10px;
+      font-size: 9px; padding: 5px 12px; border-radius: 8px;
       text-transform: uppercase; font-weight: 700; color: white;
-      letter-spacing: 0.5px;
     }
-    
     .merk-label { 
       font-size: 10px; color: #b45309; font-weight: 800; 
-      background: #fef3c7; padding: 4px 12px; border-radius: 8px;
+      background: #fef3c7; padding: 4px 10px; border-radius: 6px;
     }
-
     .product-name { 
-      font-weight: 700; color: #1e293b; font-size: 15px; 
-      margin: 15px 0; line-height: 1.4;
+      font-weight: 700; color: #1e293b; font-size: 14px; 
+      margin: 12px 0; line-height: 1.4;
     }
 
-    .button-group { display: flex; gap: 10px; }
-    
+    /* TOMBOL LINK (1 Baris Horizontal) */
+    .button-group { display: flex; gap: 10px; flex-wrap: nowrap; }
     .btn-aff {
-      flex: 1; border-radius: 14px; padding: 11px; font-size: 12px;
+      flex: 1; border-radius: 12px; padding: 10px; font-size: 11px;
       font-weight: 700; text-align: center; text-decoration: none !important;
-      color: white !important; display: flex; align-items: center; justify-content: center; gap: 6px;
+      color: white !important; display: flex; align-items: center; justify-content: center; gap: 5px;
+      white-space: nowrap;
     }
+    .shopee { background: linear-gradient(135deg, #ff7675, #ff4757); }
+    .tiktok { background: linear-gradient(135deg, #2d3436, #000000); }
 
-    .shopee { background: #ff7675; box-shadow: 0 4px 10px rgba(255, 118, 117, 0.2); }
-    .tiktok { background: #2d3436; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+    /* TOMBOL FAVORIT (HEART) */
+    .fav-icon {
+      font-size: 20px; color: #ccc; cursor: pointer; transition: 0.3s;
+    }
+    .fav-icon.active { color: #ff4757; }
+
+    /* FOOTER TETAP */
+    .sticky-footer {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: var(--footer-h);
+      background: #1e293b; color: #f8fafc;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; z-index: 1000;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="sticky-header">
   <div class="header-top">
     <div class="brand-text">Katalog<span>UTI</span></div>
     <div class="header-btns">
-      <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showDisclaimer()" style="font-size: 9px; font-weight: 700;">Disclaimer</button>
-      <button class="btn btn-sm btn-dark rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
+      <button class="btn btn-sm btn-warning rounded-pill px-2 text-dark" onclick="installApp()" style="font-size: 9px; font-weight: 800;">
+        <i class="fas fa-plus-square"></i> Shortcut
+      </button>
+      <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
     </div>
   </div>
   
@@ -124,9 +149,13 @@
       <option value="Hobi & Otomotif">🏍️ Hobi & Otomotif</option>
       <option value="Viral & Unik">✨ Viral & Unik</option>
     </select>
+    <button class="btn-fav-filter" id="favFilterBtn" onclick="toggleFavFilter()">
+      <i class="fas fa-heart"></i> Favorit
+    </button>
   </div>
 </div>
 
+<!-- KONTEN -->
 <div class="main-wrapper">
   <div id="productList">
     <div class="text-center py-5 text-muted small">
@@ -136,10 +165,26 @@
   </div>
 </div>
 
+<!-- FOOTER -->
+<div class="sticky-footer" id="footerText">
+  Sedang memuat info...
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
 <script>
   let localData = [];
+  let showFavOnly = false;
+  // Ambil data favorit dari penyimpanan HP
+  let favorites = JSON.parse(localStorage.getItem('uti_favorites')) || [];
+
+  // Variabel untuk PWA (Add to home screen)
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9ETE1X3iKPNOXuwVC0LIxjt01bMb_PbJf8P8srgmaFyqS9HyWrFgnLNAehl1wDY4fouEijqOj0Bfz/pub?output=csv';
 
   function init() {
@@ -147,7 +192,16 @@
       download: true,
       header: false,
       complete: function(results) {
+        // Asumsi data riil dimulai dari baris 2 (indeks 1)
         localData = results.data.slice(1); 
+        
+        // Ambil teks footer dari Sel G2 (Kolom ke-7 / Indeks 6) dari baris pertama data
+        if(localData[0] && localData[0][6]) {
+            document.getElementById('footerText').innerText = localData[0][6];
+        } else {
+            document.getElementById('footerText').innerText = "© 2026 Katalog UTI - Semua Hak Dilindungi.";
+        }
+
         renderData(localData);
       }
     });
@@ -164,8 +218,10 @@
       return;
     }
 
-    validData.forEach(row => {
+    validData.forEach((row, index) => {
       const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
+      const isFav = favorites.includes(nama);
+      const heartClass = isFav ? 'fas fa-heart active' : 'far fa-heart';
       
       let color = "#94a3b8";
       if(kategori === "Pakaian & Gaya") color = "#f43f5e";
@@ -181,7 +237,10 @@
         <div class="product-card">
           <div class="d-flex justify-content-between align-items-center">
             <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
-            <span class="merk-label">${merk || '-'}</span>
+            <div class="d-flex align-items-center gap-2">
+              <span class="merk-label">${merk || '-'}</span>
+              <i class="${heartClass} fav-icon" onclick="toggleFav('${nama}')"></i>
+            </div>
           </div>
           <div class="product-name">${nama}</div>
           <div class="button-group">
@@ -202,17 +261,50 @@
       if(!row[0]) return false;
       const matchSearch = (row[0] + (row[2] || "") + (row[5] || "")).toString().toLowerCase().includes(term);
       const matchCat = (cat === 'Semua' || row[1] === cat);
-      return matchSearch && matchCat;
+      const matchFav = !showFavOnly || favorites.includes(row[0]);
+      
+      return matchSearch && matchCat && matchFav;
     });
     renderData(filtered);
   }
 
-  function showGuide() {
-    alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Jika terlalu banyak pilihan, pilih kategori yang diinginkan.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
+  function toggleFav(namaProduk) {
+    if(favorites.includes(namaProduk)) {
+      favorites = favorites.filter(item => item !== namaProduk);
+    } else {
+      favorites.push(namaProduk);
+    }
+    localStorage.setItem('uti_favorites', JSON.stringify(favorites));
+    search(); // Render ulang sesuai state saat ini
   }
 
-  function showDisclaimer() {
-    alert("📢 DISCLAIMER & PERJANJIAN\n\n1. Terima Kasih sudah berbelanja melalui link \"KatalogUTI\".\n2. Link yang kami berikan tidak menjamin kualitas barang yang diterima, tapi setidaknya kami sudah memfilter toko-toko resmi dan terpercaya.\n3. Kami berharap Anda berbelanja dengan bijak dan memastikan chat ke toko terkait pertanyaan atau permintaan.\n4. Kami sebagai affiliate tidak bertanggung jawab atas hal-hal yang terjadi di marketplace.");
+  function toggleFavFilter() {
+    showFavOnly = !showFavOnly;
+    const btn = document.getElementById('favFilterBtn');
+    if(showFavOnly) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+    search();
+  }
+
+  function installApp() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      alert("Untuk menambahkan ke layar utama:\n\n📱 Android (Chrome): Klik ikon titik 3 di pojok kanan atas, lalu pilih 'Tambahkan ke Layar Utama'.\n\n🍎 iPhone (Safari): Klik ikon Share di bawah, lalu pilih 'Add to Home Screen'.");
+    }
+  }
+
+  function showGuide() {
+    alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Klik ikon Hati (♡) untuk menyimpan barang favorit.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
   }
 
   window.onload = init;
