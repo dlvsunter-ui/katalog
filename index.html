@@ -7,15 +7,14 @@
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-mint: #d1f1e9; 
+      --bg-mint: #f4f6f9; 
       --card-white: #ffffff;
-      --text-dark: #1e293b;
-      --header-h: 120px; /* Tinggi header disesuaikan */
-      --footer-h: 40px;  /* Tinggi footer tipis */
+      --header-h: 125px; 
+      --footer-h: 45px;  
     }
 
     body {
@@ -23,36 +22,43 @@
       background-color: var(--bg-mint);
       font-family: 'Poppins', sans-serif;
       -webkit-font-smoothing: antialiased;
-      padding-top: var(--header-h); /* Jarak untuk header */
-      padding-bottom: calc(var(--footer-h) + 20px); /* Jarak untuk footer */
+      padding-top: var(--header-h); 
+      padding-bottom: calc(var(--footer-h) + 20px); 
     }
 
-    /* HEADER TETAP */
+    /* HEADER TETAP - ESTETIK */
     .sticky-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(209, 241, 233, 0.95); 
-      backdrop-filter: blur(10px);
-      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.92); 
+      backdrop-filter: blur(12px);
+      padding: 12px 15px 10px 15px;
       height: var(--header-h);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, #7F00FF, #E100FF) 1; /* Garis aksen Gen Z */
       display: flex; flex-direction: column; justify-content: center;
     }
 
-    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .brand-text { font-weight: 800; font-size: 1.3rem; color: #ff0000; letter-spacing: -0.5px;}
-    .brand-text span { color: #000000; }
-    .header-btns { display: flex; gap: 5px; }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    
+    .brand-text { font-weight: 800; font-size: 1.4rem; color: #7F00FF; letter-spacing: -0.5px;}
+    .brand-text span { color: #E100FF; }
+    
+    .header-btns { display: flex; gap: 6px; }
 
     #searchInput {
-      border-radius: 12px; padding: 10px 15px; border: 1px solid #bde6da;
+      border-radius: 12px; padding: 10px 15px; border: 1px solid #e2e8f0;
       width: 100%; outline: none; font-size: 13px;
-      background: #ffffff; margin-bottom: 8px;
+      background: #f8fafc; margin-bottom: 8px;
+      transition: 0.3s;
     }
+    #searchInput:focus { border-color: #E100FF; box-shadow: 0 0 0 3px rgba(225, 0, 255, 0.1); }
 
     .filter-section { display: flex; gap: 8px; }
     #categoryDropdown {
-      flex: 1; border-radius: 10px; padding: 8px; border: 1px solid #bde6da;
+      flex: 1; border-radius: 10px; padding: 8px; border: 1px solid #e2e8f0;
       font-size: 12px; font-weight: 600; color: #334155; background: #fff;
+      outline: none;
     }
     
     .btn-fav-filter {
@@ -60,23 +66,19 @@
       background: white; color: #ff4757; font-size: 12px; font-weight: 600;
       cursor: pointer; transition: 0.2s;
     }
-    .btn-fav-filter.active { background: #ff4757; color: white; }
+    .btn-fav-filter.active { background: #ff4757; color: white; border-color: #ff4757; }
 
     /* KONTEN UTAMA */
     .main-wrapper { 
-      background: var(--card-white);
-      border-radius: 30px;
-      padding: 20px 15px;
+      padding: 15px 12px;
       min-height: 70vh;
-      margin: 0 10px;
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
     }
 
     /* KARTU PRODUK */
     .product-card {
-      background: white; border-radius: 18px; padding: 18px;
+      background: white; border-radius: 20px; padding: 18px;
       margin-bottom: 15px; border: 1px solid #f1f5f9; 
-      box-shadow: 0 8px 15px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.03);
       position: relative;
     }
     
@@ -85,9 +87,17 @@
       text-transform: uppercase; font-weight: 700; color: white;
     }
     .merk-label { 
-      font-size: 10px; color: #b45309; font-weight: 800; 
-      background: #fef3c7; padding: 4px 10px; border-radius: 6px;
+      font-size: 10px; color: #334155; font-weight: 700; 
+      background: #f1f5f9; padding: 4px 10px; border-radius: 6px;
     }
+    
+    /* LABEL OFFICIAL STORE */
+    .official-badge {
+      font-size: 10px; color: #0284c7; font-weight: 800;
+      background: #e0f2fe; padding: 4px 10px; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+
     .product-name { 
       font-weight: 700; color: #1e293b; font-size: 14px; 
       margin: 12px 0; line-height: 1.4;
@@ -99,25 +109,60 @@
       flex: 1; border-radius: 12px; padding: 10px; font-size: 11px;
       font-weight: 700; text-align: center; text-decoration: none !important;
       color: white !important; display: flex; align-items: center; justify-content: center; gap: 5px;
-      white-space: nowrap;
+      white-space: nowrap; transition: transform 0.1s;
     }
+    .btn-aff:active { transform: scale(0.95); }
     .shopee { background: linear-gradient(135deg, #ff7675, #ff4757); }
     .tiktok { background: linear-gradient(135deg, #2d3436, #000000); }
 
     /* TOMBOL FAVORIT (HEART) */
     .fav-icon {
-      font-size: 20px; color: #ccc; cursor: pointer; transition: 0.3s;
+      font-size: 20px; color: #cbd5e1; cursor: pointer; transition: 0.3s;
     }
     .fav-icon.active { color: #ff4757; }
 
-    /* FOOTER TETAP */
+    /* FOOTER TETAP - WARNA GEN Z */
     .sticky-footer {
       position: fixed; bottom: 0; left: 0; right: 0;
       height: var(--footer-h);
-      background: #1e293b; color: #f8fafc;
+      background: linear-gradient(90deg, #7F00FF, #FF007F, #FF8C00); /* Y2K / GenZ Vibe */
+      background-size: 200% 200%;
+      animation: gradientBG 5s ease infinite;
+      color: #ffffff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 600; z-index: 1000;
-      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+      font-size: 11px; font-weight: 700; z-index: 1000;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+      border-top-left-radius: 15px; border-top-right-radius: 15px;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* CUSTOM MODAL (MENGGANTIKAN ALERT) */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6); z-index: 2000;
+      display: none; justify-content: center; align-items: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-box {
+      background: white; padding: 25px; border-radius: 24px;
+      width: 85%; max-width: 400px; text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popUp { 
+      from { transform: scale(0.8); opacity: 0; } 
+      to { transform: scale(1); opacity: 1; } 
+    }
+    .modal-title { font-weight: 800; color: #1e293b; font-size: 16px; margin-bottom: 12px; }
+    .modal-text { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 20px; text-align: left;}
+    .btn-close-modal {
+      background: linear-gradient(90deg, #7F00FF, #E100FF);
+      color: white; border: none; padding: 10px;
+      border-radius: 12px; font-weight: 700; width: 100%; font-size: 13px;
     }
   </style>
 </head>
@@ -128,14 +173,16 @@
   <div class="header-top">
     <div class="brand-text">Katalog<span>UTI</span></div>
     <div class="header-btns">
-      <button class="btn btn-sm btn-warning rounded-pill px-2 text-dark" onclick="installApp()" style="font-size: 9px; font-weight: 800;">
+      <button class="btn btn-sm btn-dark rounded-pill px-2 text-white" onclick="installApp()" style="font-size: 9px; font-weight: 700;">
         <i class="fas fa-plus-square"></i> Shortcut
       </button>
-      <button class="btn btn-sm btn-outline-danger rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">Panduan</button>
+      <button class="btn btn-sm btn-outline-dark rounded-pill px-2" onclick="showGuide()" style="font-size: 9px; font-weight: 700;">
+        <i class="fas fa-info-circle"></i> Panduan
+      </button>
     </div>
   </div>
   
-  <input type="text" id="searchInput" placeholder="Ketik nama barang atau merk..." onkeyup="search()">
+  <input type="text" id="searchInput" placeholder="Cari nama barang atau merk..." onkeyup="search()">
   
   <div class="filter-section">
     <select id="categoryDropdown" onchange="search()">
@@ -159,15 +206,24 @@
 <div class="main-wrapper">
   <div id="productList">
     <div class="text-center py-5 text-muted small">
-       <div class="spinner-border spinner-border-sm text-danger mb-2"></div><br>
-       Memuat data...
+       <div class="spinner-border spinner-border-sm text-primary mb-2"></div><br>
+       Memuat katalog...
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <div class="sticky-footer" id="footerText">
-  Sedang memuat info...
+  ✨ Sedang memuat info... ✨
+</div>
+
+<!-- CUSTOM MODAL -->
+<div id="customModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">Judul</div>
+    <div class="modal-text" id="modalBody">Isi teks disini</div>
+    <button class="btn-close-modal" onclick="closeModal()">Mengerti</button>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
@@ -175,10 +231,8 @@
 <script>
   let localData = [];
   let showFavOnly = false;
-  // Ambil data favorit dari penyimpanan HP
   let favorites = JSON.parse(localStorage.getItem('uti_favorites')) || [];
 
-  // Variabel untuk PWA (Add to home screen)
   let deferredPrompt;
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -192,14 +246,13 @@
       download: true,
       header: false,
       complete: function(results) {
-        // Asumsi data riil dimulai dari baris 2 (indeks 1)
         localData = results.data.slice(1); 
         
-        // Ambil teks footer dari Sel G2 (Kolom ke-7 / Indeks 6) dari baris pertama data
-        if(localData[0] && localData[0][6]) {
-            document.getElementById('footerText').innerText = localData[0][6];
+        // Baca footer dari Kolom K Baris 2 (Indeks 10 dalam array)
+        if(localData[0] && localData[0][10]) {
+            document.getElementById('footerText').innerText = localData[0][10];
         } else {
-            document.getElementById('footerText').innerText = "© 2026 Katalog UTI - Semua Hak Dilindungi.";
+            document.getElementById('footerText').innerText = "✨ Temukan barang impianmu disini! ✨";
         }
 
         renderData(localData);
@@ -218,11 +271,24 @@
       return;
     }
 
-    validData.forEach((row, index) => {
-      const [nama, kategori, merk, shopee, tiktok, kataKunci] = row;
+    validData.forEach((row) => {
+      // Pemetaan Kolom Google Sheets ke Array:
+      // A=0, B=1, C=2, D=3, E=4, F=5, G=6, H=7, I=8, J=9, K=10
+      const nama = row[0];
+      const kategori = row[1];
+      const merk = row[2];
+      const shopee = row[3];
+      const tiktok = row[4];
+      const kataKunci = row[5];
+      const cekOfficial = row[6]; // Keterangan Official diambil dari Kolom G (Index 6)
+
       const isFav = favorites.includes(nama);
       const heartClass = isFav ? 'fas fa-heart active' : 'far fa-heart';
       
+      // Logika Penanda Official Store dari kolom G
+      const isOfficial = (cekOfficial && (cekOfficial.toLowerCase().includes('ya') || cekOfficial.toLowerCase().includes('official')));
+      const officialBadgeHTML = isOfficial ? `<span class="official-badge"><i class="fas fa-check-circle"></i> Official</span>` : '';
+
       let color = "#94a3b8";
       if(kategori === "Pakaian & Gaya") color = "#f43f5e";
       if(kategori === "Kesehatan & Perawatan") color = "#ec4899";
@@ -235,12 +301,13 @@
 
       html += `
         <div class="product-card">
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="badge-custom" style="background: ${color}">${kategori || 'Lainnya'}</span>
-            <div class="d-flex align-items-center gap-2">
-              <span class="merk-label">${merk || '-'}</span>
-              <i class="${heartClass} fav-icon" onclick="toggleFav('${nama}')"></i>
-            </div>
+            <i class="${heartClass} fav-icon" onclick="toggleFav('${nama}')"></i>
+          </div>
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span class="merk-label">${merk || 'Tanpa Merk'}</span>
+            ${officialBadgeHTML}
           </div>
           <div class="product-name">${nama}</div>
           <div class="button-group">
@@ -275,7 +342,7 @@
       favorites.push(namaProduk);
     }
     localStorage.setItem('uti_favorites', JSON.stringify(favorites));
-    search(); // Render ulang sesuai state saat ini
+    search(); 
   }
 
   function toggleFavFilter() {
@@ -289,22 +356,36 @@
     search();
   }
 
+  // LOGIKA CUSTOM MODAL
+  function openModal(title, textHTML) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalBody').innerHTML = textHTML;
+    document.getElementById('customModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('customModal').style.display = 'none';
+  }
+
   function installApp() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        }
         deferredPrompt = null;
       });
     } else {
-      alert("Untuk menambahkan ke layar utama:\n\n📱 Android (Chrome): Klik ikon titik 3 di pojok kanan atas, lalu pilih 'Tambahkan ke Layar Utama'.\n\n🍎 iPhone (Safari): Klik ikon Share di bawah, lalu pilih 'Add to Home Screen'.");
+      openModal(
+        "✨ Pasang Shortcut di HP ✨", 
+        "<b>📱 Pengguna Android (Chrome):</b><br>Klik ikon titik tiga (⋮) di pojok kanan atas, lalu pilih <b>'Tambahkan ke Layar Utama'</b>.<br><br><b>🍎 Pengguna iPhone (Safari):</b><br>Klik ikon Share (Bagikan) di bagian bawah, lalu pilih <b>'Add to Home Screen'</b>."
+      );
     }
   }
 
   function showGuide() {
-    alert("✨ PANDUAN KATALOG UTI ✨\n\n1. Ketik spesifik barang yang ingin dicari.\n2. Klik ikon Hati (♡) untuk menyimpan barang favorit.\n3. Klik Shopee/TikTok untuk belanja langsung di aplikasi.");
+    openModal(
+      "📌 Panduan Penggunaan", 
+      "1. Gunakan <b>kolom pencarian</b> atau <b>filter kategori</b> untuk mencari barang spesifik.<br><br>2. Klik ikon <b>Hati (♡)</b> untuk menyimpan produk favorit agar tidak hilang.<br><br>3. Klik tombol <b>Shopee / TikTok</b> untuk langsung menuju ke produk."
+    );
   }
 
   window.onload = init;
